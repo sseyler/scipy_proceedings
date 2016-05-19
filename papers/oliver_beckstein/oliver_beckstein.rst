@@ -59,7 +59,27 @@ MDAnalysis: A Python Package for the Rapid Analysis of Molecular Dynamics Simula
 
 .. class:: abstract
 
-MDAnalysis (http://mdanalysis.org) is a library for structural and temporal analysis of molecular dynamics (MD) simulation trajectories and individual protein structures. MD simulations of biological molecules have become an important tool to elucidate the relationship between molecular structure and physiological function. Simulations are performed with highly optimized software packages on HPC resources but most codes generate output trajectories in their own formats so that the development of new trajectory analysis algorithms is confined to specific user communities and widespread adoption and further development is delayed. The MDAnalysis library addresses this problem by abstracting access to the raw simulation data and presenting a uniform object-oriented Python interface to the user. It thus enables users to rapidly write code that is portable and immediately usable in virtually all biomolecular simulation communities. The user interface and modular design work equally well in complex scripted workflows, as foundations for other packages, and for interactive and rapid prototyping work in IPython_ :cite:`Perez2007` / Jupyter_ notebooks, especially together with molecular visualization provided by nglview_ and time series analysis with pandas_ :cite:`McKinney2010`. MDAnalysis is written in Python and Cython and uses NumPy_ arrays :cite:`Vanderwalt2011` for easy interoperability with the wider scientific Python ecosystem. It is widely used and forms the foundation for more specialized biomolecular simulation tools. MDAnalysis is available under the GNU General Public License v2.
+MDAnalysis (http://mdanalysis.org) is a library for structural and temporal
+analysis of molecular dynamics (MD) simulation trajectories and individual
+protein structures. MD simulations of biological molecules have become an
+important tool to elucidate the relationship between molecular structure and
+physiological function. Simulations are performed with highly optimized software
+packages on HPC resources but most codes generate output trajectories in their
+own formats so that the development of new trajectory analysis algorithms is
+confined to specific user communities and widespread adoption and further
+development is delayed. The MDAnalysis library addresses this problem by
+abstracting access to the raw simulation data and presenting a uniform
+object-oriented Python interface to the user. It thus enables users to rapidly
+write code that is portable and immediately usable in virtually all biomolecular
+simulation communities. The user interface and modular design work equally well
+in complex scripted workflows, as foundations for other packages, and for
+interactive and rapid prototyping work in IPython_ :cite:`Perez2007` / Jupyter_
+notebooks, especially together with molecular visualization provided by nglview_
+and time series analysis with pandas_ :cite:`McKinney2010`. MDAnalysis is
+written in Python and Cython and uses NumPy_ arrays :cite:`Vanderwalt2011` for
+easy interoperability with the wider scientific Python ecosystem. It is widely
+used and forms the foundation for more specialized biomolecular simulation
+tools. MDAnalysis is available under the GNU General Public License v2.
 
 .. _IPython: http://ipython.org/
 .. _Jupyter: http://jupyter.org/
@@ -82,13 +102,52 @@ Introduction
 .. initial copy and paste
 
 
-Molecular dynamics (MD) simulations of biological molecules have become an important tool to elucidate the relationship between molecular structure and physiological function. Simulations are performed with highly optimized software packages on HPC resources but most codes generate output trajectories in their own formats so that the development of new trajectory analysis algorithms is confined to specific user communities and widespread adoption and further development is delayed. Typical trajectory sizes range from gigabytes to terabytes so it is typically not feasible to convert trajectories into a range of different formats just to use a tool that requires this specific form. Instead, a framework is required that provides a common interface to raw simulation data.
+Molecular dynamics (MD) simulations of biological molecules have become an
+important tool to elucidate the relationship between molecular structure and
+physiological function. Simulations are performed with highly optimized software
+packages on HPC resources but most codes generate output trajectories in their
+own formats so that the development of new trajectory analysis algorithms is
+confined to specific user communities and widespread adoption and further
+development is delayed. Typical trajectory sizes range from gigabytes to
+terabytes so it is typically not feasible to convert trajectories into a range
+of different formats just to use a tool that requires this specific form.
+Instead, a framework is required that provides a common interface to raw
+simulation data.
 
-The MDAnalysis library :cite:`Michaud-Agrawal:2011fu` addresses this problem by abstracting access to the raw simulation data and presenting a uniform object-oriented Python interface to the user. MDAnalysis is written in Python and Cython and uses NumPy arrays for easy interoperability with the wider scientific Python ecosystem. It currently supports more than 25 different file formats and covers the vast majority of data formats that are used in the biomolecular simulation community, including the formats required and produced by the most popular packages NAMD, Amber, Gromacs, CHARMM, LAMMPS, DL_POLY, HOOMD. The user interface provides "physics-based" abstractions (e.g. "atoms", "bonds", "molecules") of the data that can be easily manipulated by the user. It hides the complexity of accessing data and frees the user from having to implement the details of different trajectory and topology file formats (which by themselves are often only poorly documented and just adhere to certain "community expectations" that can be difficult to understand for outsiders).
+The MDAnalysis library :cite:`Michaud-Agrawal:2011fu` addresses this problem by
+abstracting access to the raw simulation data and presenting a uniform
+object-oriented Python interface to the user. MDAnalysis is written in Python
+and Cython and uses NumPy arrays for easy interoperability with the wider
+scientific Python ecosystem. It currently supports more than 25 different file
+formats and covers the vast majority of data formats that are used in the
+biomolecular simulation community, including the formats required and produced
+by the most popular packages NAMD, Amber, Gromacs, CHARMM, LAMMPS, DL_POLY,
+HOOMD. The user interface provides "physics-based" abstractions (e.g. "atoms",
+"bonds", "molecules") of the data that can be easily manipulated by the user. It
+hides the complexity of accessing data and frees the user from having to
+implement the details of different trajectory and topology file formats (which
+by themselves are often only poorly documented and just adhere to certain
+"community expectations" that can be difficult to understand for outsiders).
 
-The user interface and modular design work equally well in complex scripted workflows, as foundations for other packages like ENCORE_ :cite:`Tiberti:2015fk` and ProtoMD_ :cite:`Somogyi:2016aa`, and for interactive and rapid prototyping work in IPython_ / Jupyter_ notebooks, especially together with molecular visualization provided by nglview_ and time series analysis with pandas_. Since the original publication :cite:`Michaud-Agrawal:2011fu`, improvements in speed and data structures make it now possible to work with terabyte-sized trajectories containing up to ~10 million particles. MDAnalysis also comes with specialized analysis classes in the MDAnalysis.analysis module that are unique to MDAnalysis such as the LeafletFinder graph-based algorithm for the analysis of lipid bilayers :cite:`Michaud-Agrawal:2011fu` or the Path Similarity Analysis for the quantitative comparison of macromolecular conformational changes :cite:`Seyler:2015fk`.
+The user interface and modular design work equally well in complex scripted
+workflows, as foundations for other packages like ENCORE_ :cite:`Tiberti:2015fk`
+and ProtoMD_ :cite:`Somogyi:2016aa`, and for interactive and rapid prototyping
+work in IPython_ / Jupyter_ notebooks, especially together with molecular
+visualization provided by nglview_ and time series analysis with pandas_. Since
+the original publication :cite:`Michaud-Agrawal:2011fu`, improvements in speed
+and data structures make it now possible to work with terabyte-sized
+trajectories containing up to ~10 million particles. MDAnalysis also comes with
+specialized analysis classes in the MDAnalysis.analysis module that are unique
+to MDAnalysis such as the LeafletFinder graph-based algorithm for the analysis
+of lipid bilayers :cite:`Michaud-Agrawal:2011fu` or the Path Similarity Analysis
+for the quantitative comparison of macromolecular conformational changes
+:cite:`Seyler:2015fk`.
 
-MDAnalysis is available in source form under the GNU General Public License v2 from GitHub https://github.com/MDAnalysis/mdanalysis and PyPi; conda packages are also available. The documentation is extensive http://docs.mdanalysis.org including an introductory tutorial http://www.mdanalysis.org/MDAnalysisTutorial/ and a very friendly and welcoming community_.
+MDAnalysis is available in source form under the GNU General Public License v2
+from GitHub https://github.com/MDAnalysis/mdanalysis and PyPi; conda packages
+are also available. The documentation is extensive http://docs.mdanalysis.org
+including an introductory tutorial http://www.mdanalysis.org/MDAnalysisTutorial/
+and a very friendly and welcoming community_.
 
 
 .. _community: https://groups.google.com/forum/#!forum/mdnalysis-discussion
@@ -98,7 +157,17 @@ MDAnalysis is available in source form under the GNU General Public License v2 f
 Conclusions
 -----------
 
-MDAnalysis provides a uniform interface to simulation data, which comes in a bewildering array of formats. It enables users to rapidly write code that is portable and immediately usable in virtually all biomolecular simulation communities. It has a very active international developer community with researchers that are expert developers and users of a wide range of simulation codes. MDAnalysis is widely used (the original paper :cite:`Michaud-Agrawal:2011fu` has been cited more than 180 times) and forms the foundation for more specialized biomolecular simulation tools. Ongoing and future developments will improve performance further, introduce transparent parallelisation schemes to utilize multi-core systems efficiently, and interface with the `SPIDAL library`_ for high performance data analytics algorithms.
+MDAnalysis provides a uniform interface to simulation data, which comes in a
+bewildering array of formats. It enables users to rapidly write code that is
+portable and immediately usable in virtually all biomolecular simulation
+communities. It has a very active international developer community with
+researchers that are expert developers and users of a wide range of simulation
+codes. MDAnalysis is widely used (the original paper
+:cite:`Michaud-Agrawal:2011fu` has been cited more than 180 times) and forms the
+foundation for more specialized biomolecular simulation tools. Ongoing and
+future developments will improve performance further, introduce transparent
+parallelisation schemes to utilize multi-core systems efficiently, and interface
+with the `SPIDAL library`_ for high performance data analytics algorithms.
 
 
 
